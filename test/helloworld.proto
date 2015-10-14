@@ -1,0 +1,25 @@
+import "rpc.proto";
+
+option cc_generic_services = true;
+
+message FooRequest {
+	required string text = 1;
+	optional int32 times = 2;
+}
+
+message FooResponse {
+	required string text = 1;
+	optional bool result = 2;
+}
+
+service EchoService {
+        option (RPC.global_service_id) = 2302;
+
+	rpc Foo(FooRequest) returns(FooResponse) {
+                option (RPC.local_method_id) = 1;
+	}
+
+	rpc FooSecond(FooRequest) returns(FooResponse) {
+	        option (RPC.local_method_id) = 2;
+	}
+}

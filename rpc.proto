@@ -1,0 +1,27 @@
+import "google/protobuf/descriptor.proto";
+
+package RPC;
+
+option cc_generic_services = true;
+
+extend google.protobuf.ServiceOptions {
+  required uint32 global_service_id = 1000;
+}
+
+extend google.protobuf.MethodOptions {
+  required uint32 local_method_id = 1000;
+}
+
+message RpcRequestData {
+	required uint32 call_id = 1;
+	required uint32 srv_method_code = 2;
+	required bytes content = 3;
+}
+
+message RpcResponseData {
+	required uint32 call_id = 1;
+	required bytes content = 2;
+}
+
+
+
